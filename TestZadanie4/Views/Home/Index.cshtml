@@ -1,0 +1,50 @@
+﻿@model List<Author>
+
+<div>
+
+    <h1 style="text-align:center">
+        <a class="btn btn-outline-success" role="button" asp-action="AddAuthor">Автора</a>
+        <a class="btn btn-outline-success" role="button" asp-action="AddBook">Книги</a>
+
+    </h1>
+    <hr style="height:20px; color:blue">
+
+</div>
+<div style="text-align: center">
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th scope="col">Ім'я'</th>
+                <th scope="col">Фамілія</th>
+                <th scope="col">Кількість книг</th>
+            </tr>
+        </thead>
+        @if (Model != null)
+        {
+            @foreach (var au in Model)
+            {
+                <tbody>
+                    <tr>
+
+
+                        <td>@au.Name</td>
+                        <td>@au.SurName</td>
+                        <td>@au.Books.Count</td>
+                        <td class="btn btn-success">
+                            <a class="btn btn-outline-success" role="button" asp-controller="Home" asp-action="DeleteAuthor" asp-route-identificator="@au.Id">Видалити</a>
+                        </td>
+
+
+
+
+                    </tr>
+                </tbody>
+            }
+
+        }
+    </table>
+</div>
+

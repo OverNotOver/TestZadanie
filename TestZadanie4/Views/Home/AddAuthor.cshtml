@@ -1,0 +1,100 @@
+﻿@model Author
+
+<div>
+    <h1>Додати Автора</h1>
+    <form method="post" asp-action="AddAuthor" asp-controller="Home">
+        <div>
+            @*   <p>
+            <label for="Name">Ім'я автора</label>
+            <input type="text" name="Name" />
+            </p>
+            <p>
+            <label for="SurName">Фалімія</label>
+            <input type="text" name="SurName" />
+            </p>
+            <p>
+            <label for="Birthday">Дата народження</label>
+            <input type="date" name="Birthday" />
+            </p>
+            <p>
+            <label for="Books">Список Книг</label>*@
+
+
+            <div class="input-group mb-3">
+                <label class="input-group-text">Ім'я автора</label>
+                <input class="form-control" type="text" name="Name" />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text">Фамілія автора</label>
+                <input class="form-control" type="text" name="SurName" />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text">Дата народження</label>
+                <input class="form-control" type="date" name="Birthday" />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text">Список доступних книг:</label>
+            </div>
+
+            <div>
+                @if (Model != null)
+                {
+                    @for (int i = 0; i < Model.Books.Count; i++)
+                    {
+                        <div class="input-group mb-3">
+
+                            @*@if (Model.Books[i].Author == null)*@
+                        @*    {*@
+                                <input type="hidden" asp-for="Books[i].Id" />
+                                <input type="hidden" asp-for="Books[i].Name" />
+                                <input type="hidden" asp-for="Books[i].Genre" />
+                                <input type="hidden" asp-for="Books[i].NumberPages" />
+                                @* <input asp-for="Books[i].Checked" />
+                    <label class="input-group-text">@Model.Books[i].Name</label>*@
+
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <input class="form-check-input mt-0" aria-label="Checkbox for following text input" asp-for="Books[i].Checked">
+                                      
+                                    </div>
+                                @if (Model.Books[i].Author == null)
+                                {
+                                    <label type="text" class="form-control" aria-label="Text input with checkbox">@Model.Books[i].Name</label>
+                                }
+                                else
+                                {
+                                    <label type="text" class="form-control" aria-label="Text input with checkbox">@Model.Books[i].Name</label>
+                                    <label type="text" class="form-control" aria-label="Text input with checkbox">@Model.Books[i].Author.Name</label>
+                                }
+                                </div>
+                            @*}*@
+                        </div>
+                    }
+
+
+                }
+
+            </div>
+
+
+
+
+
+        </div>
+
+        @*  <p>
+        <button asp-controller="Home" asp-action="AddAuthor">Добавить автора</button>
+        <button asp-controller="Home" asp-action="Index">На головну</button>
+        </p>
+        *@
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-success" asp-controller="Home" asp-action="AddAuthor">Додати Автора</button>
+            <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">На головну</button>
+
+        </div>
+    </form>
+</div>
+
+
+

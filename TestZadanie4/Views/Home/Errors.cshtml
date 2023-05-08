@@ -1,0 +1,12 @@
+﻿@model dynamic
+
+<h1>
+    @if (Model != null)
+        @Model.ErrorMessage
+
+    </h1>
+    <h3>
+        @if (Model != null)
+        @Model.Status
+
+    </h3>
