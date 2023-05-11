@@ -27,25 +27,33 @@ namespace TestZadanie4.Services
 
                 using (ConnectDb connectDb = _connectDb)
                 {
-                    var books = author.Books.Where(b => b.Checked).ToList();
-                    author.Books = null;
-                    if (books.Count > 0)
+                    if (author.Books != null)
                     {
-                        foreach (var item in books)
+                        var books = author.Books.Where(b => b.Checked).ToList();
+                        author.Books = null;
+                        if (books.Count > 0)
                         {
-                            if (item.Checked == true)
+                            foreach (var item in books)
                             {
-                                var book = connectDb.Books.FirstOrDefault(b => b.Id == item.Id);
-                                if (book != null)
+                                if (item.Checked == true)
                                 {
-                                    book.Author = author;           
+                                    var book = connectDb.Books.FirstOrDefault(b => b.Id == item.Id);
+                                    if (book != null)
+                                    {
+                                        book.Author = author;
+                                    }
                                 }
+
+
+
                             }
-                            
-
-
+                        }
+                        else
+                        {
+                            connectDb.Authors.Add(author);
                         }
                     }
+
                     else
                     {
                         connectDb.Authors.Add(author);
@@ -91,6 +99,39 @@ namespace TestZadanie4.Services
             return result;
 
         }
+
+
+
+        public async Task<BaseResponse<List<Author>>> Edit(Author author)
+        {
+            BaseResponse<List<Author>> result = new BaseResponse<List<Author>>();
+            try
+            {
+                var response = Select().Result.FirstOrDefault(b => b.Id == author.Id);
+                if (response != null)
+                {
+                    using (ConnectDb connectDb = _connectDb)
+                    {
+                        response.Name = author.Name;
+                        response.SurName = author.SurName;
+                        response.Birthday = author.Birthday;
+
+                        connectDb.SaveChanges();
+                        result.Data = await connectDb.Authors.Include(a => a.Books).ToListAsync();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = ResultCode.Failure;
+                result.ErrorMessage = ex.Message;
+            }
+            return result;
+
+        }
+
 
     }
 }

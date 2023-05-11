@@ -1,0 +1,127 @@
+﻿@model Author
+
+
+
+
+
+
+
+
+
+<div>
+    <h1>Додати Автора</h1>
+    <form method="post" asp-action="AddAuthor" asp-controller="Home">
+        <div>
+            <div class="input-group mb-3">
+                <label class="input-group-text">Ім'я автора</label>
+                <input class="form-control" type="text" name="Name" />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text">Фамілія автора</label>
+                <input class="form-control" type="text" name="SurName" />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text">Дата народження</label>
+                <input class="form-control" type="date" name="Birthday" />
+            </div>
+
+
+
+            <div class="input-group mb-3">
+                <label class="input-group-text">Список доступних книг:</label>
+                <a type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Додати нову книгу</a>
+            </div>
+
+            <div>
+                @if (Model != null)
+                {                 
+                    @for (int i = 0; i < Model.Books.Count; i++)
+                    {
+                        <div class="input-group mb-3">
+                            <input type="hidden" asp-for="Books[i].Id" />
+                            <input type="hidden" asp-for="Books[i].Name" />
+                            <input type="hidden" asp-for="Books[i].Genre" />
+                            <input type="hidden" asp-for="Books[i].NumberPages" />
+                            <div class="input-group mb-3">
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" aria-label="Checkbox for following text input" asp-for="Books[i].Checked">
+
+                                </div>
+                                @if (Model.Books[i].Author == null)
+                                {
+                                    <label type="text" class="form-control" aria-label="Text input with checkbox">@Model.Books[i].Name</label>
+                                }
+                                else
+                                {
+                                    <label type="text" class="form-control" aria-label="Text input with checkbox">@Model.Books[i].Name</label>
+                                    <label type="text" class="form-control" aria-label="Text input with checkbox">@Model.Books[i].Author.Name</label>
+                                }
+                            </div>
+
+                        </div>
+                    }
+
+                }
+
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-success" asp-controller="Author" asp-action="AddAuthor">Додати Автора</button>
+            <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">На головну</button>
+
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Додати нову книгу</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <form method="post" asp-action="AddBook" asp-controller="Book">
+                        <div class="input-group mb-3">
+
+                            <label class="input-group-text">Назва Книги</label>
+                            <input class="form-control" type="text" name="Name" />
+
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Жанр Книги:</label>
+                            <select name="Genre" class="form-select">
+                                <option selected></option>
+                                <option value="Класика">Класика</option>
+                                <option value="Детектив">Детектив</option>
+                                <option value="Роман">Роман</option>
+                                <option value="Поезія">Поезія</option>
+                                <option value="Триллер">Триллер</option>
+                                <option value="Фантастика">Фантастика</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Кількість сторінок</label>
+                            <input class="form-control" type="number" name="NumberPages" />
+
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button id="btnSubmit" class="btn btn-outline-success" asp-controller="Book" asp-action="AddBook">Зберегти</button>
+
+                        </div>
+
+                    </form>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

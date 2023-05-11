@@ -1,0 +1,34 @@
+﻿@model Author
+
+
+<div class="modal-header">
+    <label class="modal-title">Редагувати Автора</label>
+</div>
+
+<form method="post" asp-action="EditAuthor" asp-controller="Author">
+    <div class="input-group mb-3">
+
+        <input class="form-control" type="text" type="hidden" asp-for="Id" />
+
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text">Ім'я Автора</label>
+        <input class="form-control" type="text" name="Name" />
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text">Фамілія Автора</label>
+        <input class="form-control" type="text" name="SurName" />
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text">Дата народження</label>
+        <input class="form-control" type="date" name="Birthday" />
+    </div>
+
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">Назад на головну</button>
+        <button class="btn btn-outline-success" asp-controller="Author" asp-action="EditAuthor">Зберегти зміни</button>
+    </div>
+
+</form>
+
+

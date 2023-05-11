@@ -67,6 +67,38 @@ namespace TestZadanie4.Services
             return result;
 
         }
-       
+
+
+        public async Task<BaseResponse<List<Book>>> Edit(Book book)
+        {
+            BaseResponse<List<Book>> result = new BaseResponse<List<Book>>();
+            try
+            {
+                var response = Select().Result.FirstOrDefault(b => b.Id == book.Id);
+                if (response != null)
+                {
+                    using (ConnectDb connectDb = _connectDb)
+                    {
+                        response.Name = book.Name;
+                        response.Genre = book.Genre;
+                        response.NumberPages = book.NumberPages;
+             
+                        connectDb.SaveChanges();
+                        result.Data = await _connectDb.Books.Include(b => b.Author).ToListAsync();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = ResultCode.Failure;
+                result.ErrorMessage = ex.Message;
+            }
+            return result;
+
+        }
+
+
     }
 }

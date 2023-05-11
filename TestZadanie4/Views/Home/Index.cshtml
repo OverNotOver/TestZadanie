@@ -3,11 +3,14 @@
 <div>
 
     <h1 style="text-align:center">
-        <a class="btn btn-outline-success" role="button" asp-action="AddAuthor">Автора</a>
-        <a class="btn btn-outline-success" role="button" asp-action="AddBook">Книги</a>
+        <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="AddAuthor">Додати нового автора</a>
+        <a class="btn btn-outline-success" role="button" asp-controller="Book" asp-action="AddBook">Список книг в наявності</a>
 
     </h1>
     <hr style="height:20px; color:blue">
+      <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Список авторів та кількість їх книг</h5>               
+            </div>
 
 </div>
 <div style="text-align: center">
@@ -19,6 +22,7 @@
 
                 <th scope="col">Ім'я'</th>
                 <th scope="col">Фамілія</th>
+                <th scope="col">Дата народження</th>
                 <th scope="col">Кількість книг</th>
             </tr>
         </thead>
@@ -32,9 +36,13 @@
 
                         <td>@au.Name</td>
                         <td>@au.SurName</td>
+                        <td>@au.Birthday.ToShortDateString()</td>
                         <td>@au.Books.Count</td>
                         <td class="btn btn-success">
-                            <a class="btn btn-outline-success" role="button" asp-controller="Home" asp-action="DeleteAuthor" asp-route-identificator="@au.Id">Видалити</a>
+                            <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="DeleteAuthor" asp-route-identificator="@au.Id">Видалити</a>
+                        </td>
+                        <td class="btn btn-success">
+                            <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="EditAuthor" asp-route-identificator="@au.Id">Редагувати</a>
                         </td>
 
 

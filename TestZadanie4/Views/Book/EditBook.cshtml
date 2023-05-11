@@ -1,0 +1,44 @@
+﻿@model Book
+
+
+<div class="modal-header">
+    <label class="modal-title">Редагувати Книгу</label>
+</div>
+
+<form method="post" asp-action="EditBook" asp-controller="Book">
+    <div class="input-group mb-3">
+      
+        <input class="form-control" type="text" type="hidden"  asp-for="Id" />
+ 
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text">Назва Книги</label>
+        <input class="form-control" type="text" name="Name" />
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text">Жанр Книги:</label>
+        <select name="Genre" class="form-select">
+            <option selected></option>
+            <option value="Класика">Класика</option>
+            <option value="Детектив">Детектив</option>
+            <option value="Роман">Роман</option>
+            <option value="Поезія">Поезія</option>
+            <option value="Триллер">Триллер</option>
+            <option value="Фантастика">Фантастика</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text">Кількість сторінок</label>
+        <input class="form-control" type="number" name="NumberPages" />
+    </div>
+ 
+
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">Назад на головну</button>
+        <button class="btn btn-outline-success" asp-controller="Book" asp-action="EditBook">Зберегти зміни</button>
+    </div>
+
+</form>
+</div>
+
+
