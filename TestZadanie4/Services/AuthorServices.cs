@@ -102,7 +102,7 @@ namespace TestZadanie4.Services
 
 
 
-        public async Task<BaseResponse<List<Author>>> Edit(Author author)
+        public async Task<BaseResponse<List<Author>>> Update(Author author)
         {
             BaseResponse<List<Author>> result = new BaseResponse<List<Author>>();
             try

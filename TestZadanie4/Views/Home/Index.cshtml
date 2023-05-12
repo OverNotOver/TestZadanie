@@ -3,8 +3,8 @@
 <div>
 
     <h1 style="text-align:center">
-        <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="AddAuthor">Додати нового автора</a>
-        <a class="btn btn-outline-success" role="button" asp-controller="Book" asp-action="AddBook">Список книг в наявності</a>
+        <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="CreateAuthor">Додати нового автора</a>
+        <a class="btn btn-outline-success" role="button" asp-controller="Book" asp-action="CreateBook">Список книг в наявності</a>
 
     </h1>
     <hr style="height:20px; color:blue">
@@ -42,7 +42,7 @@
                             <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="DeleteAuthor" asp-route-identificator="@au.Id">Видалити</a>
                         </td>
                         <td class="btn btn-success">
-                            <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="EditAuthor" asp-route-identificator="@au.Id">Редагувати</a>
+                            <a class="btn btn-outline-success" role="button" asp-controller="Author" asp-action="UpdateAuthor" asp-route-identificator="@au.Id">Редагувати</a>
                         </td>
 
 

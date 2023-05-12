@@ -5,7 +5,7 @@
     <label class="modal-title">Редагувати Книгу</label>
 </div>
 
-<form method="post" asp-action="EditBook" asp-controller="Book">
+<form method="post" asp-action="UpdateBook" asp-controller="Book">
     <div class="input-group mb-3">
       
         <input class="form-control" type="text" type="hidden"  asp-for="Id" />
@@ -35,7 +35,7 @@
 
     <div class="input-group mb-3">
         <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">Назад на головну</button>
-        <button class="btn btn-outline-success" asp-controller="Book" asp-action="EditBook">Зберегти зміни</button>
+        <button class="btn btn-outline-success" asp-controller="Book" asp-action="UpdateBook">Зберегти зміни</button>
     </div>
 
 </form>

@@ -1,16 +1,8 @@
 ﻿@model Author
 
-
-
-
-
-
-
-
-
 <div>
     <h1>Додати Автора</h1>
-    <form method="post" asp-action="AddAuthor" asp-controller="Home">
+    <form method="post" asp-action="CreateAuthor" asp-controller="Author">
         <div>
             <div class="input-group mb-3">
                 <label class="input-group-text">Ім'я автора</label>
@@ -66,7 +58,7 @@
             </div>
         </div>
         <div class="input-group mb-3">
-            <button class="btn btn-outline-success" asp-controller="Author" asp-action="AddAuthor">Додати Автора</button>
+            <button class="btn btn-outline-success" asp-controller="Author" asp-action="CreateAuthor">Додати Автора</button>
             <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">На головну</button>
 
         </div>
@@ -85,7 +77,7 @@
             <div class="modal-body">
                 <div>
 
-                    <form method="post" asp-action="AddBook" asp-controller="Book">
+                    <form method="post" asp-action="CreateBook" asp-controller="Book">
                         <div class="input-group mb-3">
 
                             <label class="input-group-text">Назва Книги</label>
@@ -111,7 +103,7 @@
                         </div>
 
                         <div class="input-group mb-3">
-                            <button id="btnSubmit" class="btn btn-outline-success" asp-controller="Book" asp-action="AddBook">Зберегти</button>
+                            <button id="btnSubmit" class="btn btn-outline-success" asp-controller="Book" asp-action="CreateBook">Зберегти</button>
 
                         </div>
 

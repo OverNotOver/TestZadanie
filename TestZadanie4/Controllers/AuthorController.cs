@@ -15,7 +15,7 @@ namespace TestZadanie4.Controllers
             _bookServ = bookServ;
         }
 
-        public async Task<IActionResult> AddAuthor()
+        public async Task<IActionResult> CreateAuthor()
         {
             Author authorNew = new Author();
             var books = await _bookServ.Select();
@@ -24,7 +24,7 @@ namespace TestZadanie4.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAuthor(Author author)
+        public async Task<IActionResult> CreateAuthor(Author author)
         {
             if (ModelState.IsValid)
             {
@@ -50,14 +50,14 @@ namespace TestZadanie4.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditAuthor(Guid identificator)
+        public async Task<IActionResult> UpdateAuthor(Guid identificator)
         {
             if (ModelState.IsValid)
             {
                 var responce = _authorServices.Select().Result.FirstOrDefault(b => b.Id == identificator);
                 if (responce != null)
                 {
-                    return View("EditAuthor", responce);
+                    return View("UpdateAuthor", responce);
                 }
                 return View("Errors", responce);
             }
@@ -66,12 +66,12 @@ namespace TestZadanie4.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> EditAuthor(Author author)
+        public async Task<IActionResult> UpdateAuthor(Author author)
         {
 
             if (ModelState.IsValid)
             {
-                await _authorServices.Edit(author);
+                await _authorServices.Update(author);
             }
             return RedirectToAction("Index", "Home");
         }

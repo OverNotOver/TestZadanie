@@ -5,7 +5,7 @@
     <label class="modal-title">Редагувати Автора</label>
 </div>
 
-<form method="post" asp-action="EditAuthor" asp-controller="Author">
+<form method="post" asp-action="UpdateAuthor" asp-controller="Author">
     <div class="input-group mb-3">
 
         <input class="form-control" type="text" type="hidden" asp-for="Id" />
@@ -26,7 +26,7 @@
 
     <div class="input-group mb-3">
         <button class="btn btn-outline-success" asp-controller="Home" asp-action="Index">Назад на головну</button>
-        <button class="btn btn-outline-success" asp-controller="Author" asp-action="EditAuthor">Зберегти зміни</button>
+        <button class="btn btn-outline-success" asp-controller="Author" asp-action="UpdateAuthor">Зберегти зміни</button>
     </div>
 
 </form>

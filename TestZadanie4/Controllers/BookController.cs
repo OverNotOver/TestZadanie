@@ -21,7 +21,7 @@ namespace TestZadanie4.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AddBook()
+        public async Task<IActionResult> CreateBook()
         {
             var books = await _bookServ.Select();
             return View(books);
@@ -30,7 +30,7 @@ namespace TestZadanie4.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddBook(Book book)
+        public async Task<IActionResult> CreateBook(Book book)
         {
             if (ModelState.IsValid)
             {
@@ -45,13 +45,17 @@ namespace TestZadanie4.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddBookAjax(Book book)
+        public async Task<IActionResult> CreateBookAjax(Book book)
         {
             if (ModelState.IsValid)
             {
-                await _bookServ.CreateBook(book);
+                var response =  await _bookServ.CreateBook(book);
+                if (response.Status == ResultCode.OK)
+                {
+                    return Ok("Книга добавлена в базу!");
+                }
             }
-            return Ok("Книга добавлена в базу!");
+            return Ok("Книга не додана");
         }
 
         [HttpGet]
@@ -61,18 +65,18 @@ namespace TestZadanie4.Controllers
             {
                 await _bookServ.Delete(identificator);
             }
-            return RedirectToAction("AddBook");
+            return RedirectToAction("CreateBook");
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditBook(Guid identificator)
+        public async Task<IActionResult> UpdateBook(Guid identificator)
         {
             if (ModelState.IsValid)
             {
                 var responce = _bookServ.Select().Result.FirstOrDefault(b => b.Id == identificator);
                 if (responce != null)
                 {
-                    return View("EditBook", responce);
+                    return View("UpdateBook", responce);
                 }
                 return View("Errors", responce);
             }
@@ -81,14 +85,14 @@ namespace TestZadanie4.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> EditBook(Book book)
+        public async Task<IActionResult> UpdateBook(Book book)
         {
 
             if (ModelState.IsValid)
             {
-                await _bookServ.Edit(book);
+                await _bookServ.Update(book);
             }
-            return RedirectToAction("AddBook");
+            return RedirectToAction("CreateBook");
         }
 
 

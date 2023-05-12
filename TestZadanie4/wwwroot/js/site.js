@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#myForm').submit(function (e) {
         e.preventDefault();
         $.ajax({
-            url: '/Book/AddBookAjax',
+            url: '/Book/CreateBookAjax',
             method: 'POST',
             data: $(this).serialize(),
             success: function (data) {

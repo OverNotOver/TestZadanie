@@ -65,7 +65,7 @@
     <div class="input-group mb-3">
         <a class="btn btn-outline-success" asp-controller="Home" asp-action="Index">Назад на головну</a>
         <a type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Додати нову книгу</a>
-        <a class="btn btn-outline-success" asp-controller="Author" asp-action="AddAuthor">Додати автора</a>
+        <a class="btn btn-outline-success" asp-controller="Author" asp-action="CreateAuthor">Додати автора</a>
     </div>
 
 </div>
@@ -95,7 +95,7 @@
                             <a class="btn btn-outline-success" role="button" asp-controller="Book" asp-action="DeleteBook" asp-route-identificator="@book.Id">Видалити</a>
                         </td>
                         <td class="btn btn-success">
-                            <a class="btn btn-outline-success" role="button" asp-controller="Book" asp-action="EditBook" asp-route-identificator="@book.Id">Редагувати</a>
+                            <a class="btn btn-outline-success" role="button" asp-controller="Book" asp-action="UpdateBook" asp-route-identificator="@book.Id">Редагувати</a>
                         </td>
                     </tr>
                 </tbody>

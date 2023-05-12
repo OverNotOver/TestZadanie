@@ -69,7 +69,7 @@ namespace TestZadanie4.Services
         }
 
 
-        public async Task<BaseResponse<List<Book>>> Edit(Book book)
+        public async Task<BaseResponse<List<Book>>> Update(Book book)
         {
             BaseResponse<List<Book>> result = new BaseResponse<List<Book>>();
             try
